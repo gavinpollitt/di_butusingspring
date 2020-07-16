@@ -1,0 +1,4 @@
+logging:
+    system: false
+    game: true
+    statistic: false

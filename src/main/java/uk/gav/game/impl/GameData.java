@@ -5,9 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import uk.gav.game.DiceProvider;
 import uk.gav.game.Die;
 import uk.gav.game.logging.Logger;
@@ -19,8 +16,6 @@ import uk.gav.game.logging.Logger;
  * Singleton holder of the current game environment allow injections of the provider of the dice and
  * the number of dice to use.
  */
-@Component
-@Scope("prototype")
 public final class GameData {
 	
 	private final DiceProvider provider;

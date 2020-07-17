@@ -7,9 +7,6 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import uk.gav.game.Die;
 import uk.gav.game.GameResultProcessor;
 import uk.gav.game.logging.Logger;
@@ -21,8 +18,6 @@ import uk.gav.game.stats.StatProducer;
  *
  * A single iteration of the current 'game of dice'. The type of game will be determined by the injected classes
  */
-@Component("uk.gav.game.impl.Game")
-@Scope("prototype")
 public class Game {
 	
 	private final GameData context;

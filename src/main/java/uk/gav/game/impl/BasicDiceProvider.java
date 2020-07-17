@@ -6,10 +6,6 @@ import java.util.stream.IntStream;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
-
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import uk.gav.game.DiceProvider;
 import uk.gav.game.Die;
@@ -23,8 +19,6 @@ import uk.gav.game.logging.Logger;
  *
  * 'Factory' for basic dice that provide the standard roles based on the number of sides.
  */
-@Component
-@Scope("prototype")
 public class BasicDiceProvider implements DiceProvider {
 	
 	protected final int sides;

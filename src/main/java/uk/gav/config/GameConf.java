@@ -4,8 +4,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -14,8 +19,12 @@ import org.springframework.stereotype.Component;
 import uk.gav.game.GameResultProcessor;
 import uk.gav.game.annotation.Dice;
 import uk.gav.game.annotation.Sides;
+import uk.gav.game.impl.BasicDiceProvider;
 import uk.gav.game.impl.DoubleUpResultProcessor;
+import uk.gav.game.impl.Game;
+import uk.gav.game.impl.GameData;
 import uk.gav.game.impl.HighestRollResultProcessor;
+import uk.gav.game.impl.Players;
 import uk.gav.game.logging.Logger;
 
 @Configuration
@@ -24,6 +33,18 @@ public class GameConf {
     private boolean systemLogging;
     private boolean gameLogging;
     private boolean statisticLogging;
+
+    @Autowired
+    private AnnotationConfigApplicationContext context;
+    
+    @PostConstruct
+    public void init() {
+        
+        context.registerBean(BasicDiceProvider.class, bd -> bd.setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE));
+        context.registerBean("uk.gav.game.impl.Game", Game.class, bd -> bd.setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE));
+        context.registerBean(GameData.class, bd -> bd.setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE));
+        context.registerBean("uk.gav.game.impl.Players", Players.class, bd -> bd.setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE));
+    }
 
     @Bean
     @Scope("prototype")

@@ -7,13 +7,8 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import uk.gav.game.logging.Logger;
 
-@Component("uk.gav.game.impl.Players")
-@Scope("prototype")
 public class Players {
 	private final List<Player> players;
 		

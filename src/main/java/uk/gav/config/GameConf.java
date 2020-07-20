@@ -26,6 +26,9 @@ import uk.gav.game.impl.GameData;
 import uk.gav.game.impl.HighestRollResultProcessor;
 import uk.gav.game.impl.Players;
 import uk.gav.game.logging.Logger;
+import uk.gav.game.stats.AverageThrowStat;
+import uk.gav.game.stats.FaceCountStat;
+import uk.gav.game.stats.StatProducer;
 
 @Configuration
 @ConfigurationProperties(prefix = "logging")
@@ -44,6 +47,8 @@ public class GameConf {
         context.registerBean("uk.gav.game.impl.Game", Game.class, bd -> bd.setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE));
         context.registerBean(GameData.class, bd -> bd.setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE));
         context.registerBean("uk.gav.game.impl.Players", Players.class, bd -> bd.setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE));
+        context.registerBean(AverageThrowStat.class);
+        context.registerBean(FaceCountStat.class);
     }
 
     @Bean
